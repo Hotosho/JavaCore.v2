@@ -24,7 +24,7 @@ public class DemoComparator {
 
         System.out.println(capabilities);
 
-        Comparator<Capability> comparator = new Comparator<Capability>() {
+        /*Comparator<Capability> comparator = new Comparator<Capability>() {
             @Override
             public int compare(Capability o1, Capability o2) {
 
@@ -40,7 +40,7 @@ public class DemoComparator {
                     return o1.getChannelName().compareTo(o2.getChannelName());
                 return 0;
             }
-        };
+        }; */
 
         capabilities.sort(new DateComparator());
         System.out.println(capabilities);

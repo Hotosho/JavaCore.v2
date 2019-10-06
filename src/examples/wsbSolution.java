@@ -1,11 +1,11 @@
-package walidator;
+package examples;
 
 //Prosty walidator adresów w sieci internet
 //-----
 //Wymagania: adres powinien zaczynać się od nazwy protokołu, dopuszczalne - http:// lub https:// www niekoniecznie blast
 // strefa powinna być oddzielone kropką, dopuszczalne - com, org, net, inne punkty w tytule adresy niedozwolone
 
-public class Solution {
+public class wsbSolution {
     public static void main(String[] args) {
         //String test = "444Everything you need to know about the the Boeing";
         String link = "https://githab.com";
