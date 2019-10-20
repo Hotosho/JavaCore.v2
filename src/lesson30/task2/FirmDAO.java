@@ -7,6 +7,14 @@ public class FirmDAO {
 
     private static Set<Firm> firmsDAO = new TreeSet<>();
 
+    public FirmDAO(TreeSet<Firm> firmsDAO) {
+        this.firmsDAO = firmsDAO;
+    }
+
+    public static Set<Firm> getFirmsDAO() {
+        return firmsDAO;
+    }
+
     private static Firm firmAdd(Firm firm) {
         firmsDAO.add(firm);
         return firm;

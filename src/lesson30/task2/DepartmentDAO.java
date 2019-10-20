@@ -7,12 +7,20 @@ public class DepartmentDAO {
 
     private static Set<Department> departmentsDAO = new HashSet<>();
 
+    public DepartmentDAO(HashSet<Department> departmentsDAO) {
+        this.departmentsDAO = departmentsDAO;
+    }
+
+    public static Set<Department> getDepartmentsDAO() {
+        return departmentsDAO;
+    }
+
     private static Department addDepartment(Department department) {
         departmentsDAO.add(department);
         return department;
     }
 
-    private static Department removeDepartment(Department department){
+    private static Department removeDepartment(Department department) {
         departmentsDAO.remove(department);
         return department;
     }

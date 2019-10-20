@@ -4,27 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerDAO {
+    //1  вызов нужной структуры данных
+    private List<Customer> customersDAO = new ArrayList<>();
 
-    private static List<Customer> customersDAO = new ArrayList<>();
+    //2 конструктор которы принимает эту структуру данных в дао
+    public CustomerDAO(ArrayList<Customer> customersDAO) {
+        this.customersDAO = customersDAO;
 
-    private static Customer addCustomer(Customer customer) {
+    }
+    //3 методы (создать/ удалить)
+    private Customer addCustomer(Customer customer) {
         customersDAO.add(customer);
         return customersDAO.get(customersDAO.indexOf(customer));
     }
 
-    private static Customer removeCustomer(Customer customer) {
+    private Customer removeCustomer(Customer customer) {
         return customersDAO.remove(customersDAO.indexOf(customer));
     }
 
-    //TODO
-    /*как правильно написать set для обновления ?
-    private static Customer updateCustomer(Customer customer) {
-
-        //если в такой set надо дать два значения ?
-        customersDAO.set(, Customer);
-    }*/
-
-    public static List<Customer> getCustomersDAO() {
+    public List<Customer> getCustomersDAO() {
         return customersDAO;
     }
 }
