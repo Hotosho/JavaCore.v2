@@ -1,54 +1,44 @@
 package lesson30.task2;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class ProjectDAO {
+    private static Set<Project> projects;
 
-    private static Set<Project> projectsDAO = new HashSet<>();
-
-    public ProjectDAO(HashSet<Project> projectsDAO) {
-        this.projectsDAO = projectsDAO;
+    public ProjectDAO(Set<Project> projects) {
+        ProjectDAO.projects = new HashSet<>();
     }
 
-    // ИДЕЯ сказала надо создать 2й контруктор строка 15,16
-    public ProjectDAO() {
-        projectsDAO = new HashSet<>();
+    public Set<Project> getProjects() {
+        return projects;
     }
 
-    public static Set<Project> getProjectsDAO() {
-        return projectsDAO;
-    }
-
-    private static Project addProject(Project project) {
-        projectsDAO.add(project);
+    private Project addProject(Project project) {
+        projects.add(project);
         return project;
     }
 
-    private static Project removeProject(Project project) {
-        projectsDAO.remove(project);
+    private Project removeProject(Project project) {
+        projects.remove(project);
         return project;
     }
-
 
     public static Project getNameProject(String name) {
-        if (projectsDAO == null)
+        if (projects == null)
             return null;
-
-        for (Project pr : projectsDAO) {
+        for (Project pr : projects) {
             if (pr != null && pr.getName().equals(name))
                 return pr;
         }
         return null;
     }
 
-    // тут ИДЕЯ написала мне ошибку потом предложила добавить конструкцию строка 49
-    public HashSet<Project> projectsByEmployee(Employee employee){
-
-        HashSet<Project> hashProjectsByEmployee = new HashSet<>();
-
-        hashProjectsByEmployee = (HashSet<Project>) employee.getProjects();
-        return hashProjectsByEmployee;
+    public static Set<Project> projectsByEmployee(Employee employee) {
+        HashSet<Project> listProjectsByEmployee;
+        listProjectsByEmployee = (HashSet<Project>) employee.getProjects();
+        return listProjectsByEmployee;
     }
-
 }

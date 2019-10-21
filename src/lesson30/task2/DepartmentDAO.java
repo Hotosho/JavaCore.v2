@@ -4,24 +4,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class DepartmentDAO {
+    private static Set<Department> departments;
 
-    private static Set<Department> departmentsDAO = new HashSet<>();
-
-    public DepartmentDAO(HashSet<Department> departmentsDAO) {
-        this.departmentsDAO = departmentsDAO;
+    public DepartmentDAO(Set<Department> departments) {
+        DepartmentDAO.departments = new HashSet<>();
     }
 
-    public static Set<Department> getDepartmentsDAO() {
-        return departmentsDAO;
+    public static Set<Department> getDepartments() {
+        return departments;
     }
 
-    private static Department addDepartment(Department department) {
-        departmentsDAO.add(department);
+    private Department addDepartment(Department department){
+        departments.add(department);
         return department;
     }
 
-    private static Department removeDepartment(Department department) {
-        departmentsDAO.remove(department);
+    private Department removeDepartment(Department department){
+        departments.remove(department);
         return department;
     }
 }

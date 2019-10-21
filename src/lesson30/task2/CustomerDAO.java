@@ -1,28 +1,26 @@
 package lesson30.task2;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CustomerDAO {
-    //1  вызов нужной структуры данных
-    private List<Customer> customersDAO = new ArrayList<>();
+    private static Set<Customer> customers;
 
-    //2 конструктор которы принимает эту структуру данных в дао
-    public CustomerDAO(ArrayList<Customer> customersDAO) {
-        this.customersDAO = customersDAO;
-
-    }
-    //3 методы (создать/ удалить)
-    private Customer addCustomer(Customer customer) {
-        customersDAO.add(customer);
-        return customersDAO.get(customersDAO.indexOf(customer));
+    public CustomerDAO(Set<Customer> customers) {
+        CustomerDAO.customers = new HashSet<>();
     }
 
-    private Customer removeCustomer(Customer customer) {
-        return customersDAO.remove(customersDAO.indexOf(customer));
+    public static Set<Customer> getCustomers() {
+        return customers;
     }
 
-    public List<Customer> getCustomersDAO() {
-        return customersDAO;
+    private Customer addCustomer(Customer customer){
+        customers.add(customer);
+        return customer;
+    }
+
+    private Customer removeCustomer(Customer customer){
+        customers.remove(customer);
+        return customer;
     }
 }

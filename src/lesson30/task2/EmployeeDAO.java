@@ -4,41 +4,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAO {
+    private static List<Employee> employees;
 
-    private static List<Employee> employeesDAO = new ArrayList<>();
-
-    public EmployeeDAO(ArrayList<Employee> employeesDAO) {
-        this.employeesDAO = employeesDAO;
+    public EmployeeDAO(List<Employee> employees) {
+        EmployeeDAO.employees = new ArrayList<>();
     }
 
-    public EmployeeDAO() {
-        employeesDAO = new ArrayList<>();
-    }
-
-
-    public static List<Employee> getEmployeesDAO() {
-        return employeesDAO;
+    public static List<Employee> getEmployees() {
+        return employees;
     }
 
     private static Employee addEmployee(Employee employee) {
-        employeesDAO.add(employee);
-        return employeesDAO.get(employeesDAO.indexOf(employee));
+        employees.add(employee);
+        return employees.get(employees.indexOf(employee));
     }
 
     private static Employee removeEmployee(Employee employee) {
-        return employeesDAO.remove(employeesDAO.indexOf(employee));
+        return employees.remove(employees.indexOf(employee));
     }
 
-    //список сотрудников, работающих над заданным проектом
-    public ArrayList<Employee> employeesByProject(String projectName) {
-
+    public static List<Employee> employeesByProject(String projectName) {
         ArrayList<Employee> listEmployeesByProject = new ArrayList<>();
 
-        for (Employee em : getEmployeesDAO()) {
+        for (Employee em : employees) {
             if (em != null && em.getProjects() != null && em.getProjects().contains(ProjectDAO.getNameProject(projectName)))
-                listEmployeesByProject.add(em);
+                ;
+            listEmployeesByProject.add(em);
         }
         return listEmployeesByProject;
     }
 
+    //TODO
+    public static List<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
+        ArrayList<Employee> listEmployeesByDepartmentWithoutProject = new ArrayList<>();
+
+
+        for (Employee em : employeeWithoutProject()){
+
+        }
+    }
+
+    private static Employee employeeWithoutProject(){
+        for (Employee em : getEmployees()) {
+            if (em != null && em.getProjects() != null && em.getProjects().isEmpty())
+                return em;
+        }
+        return null;
+    }
 }

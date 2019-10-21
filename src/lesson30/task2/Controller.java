@@ -1,21 +1,26 @@
 package lesson30.task2;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class Controller {
 
-    private EmployeeDAO employeeDAO = new EmployeeDAO();
-    private ProjectDAO projectDAO = new ProjectDAO();
+    EmployeeDAO employeeDAO = new EmployeeDAO();
+    ProjectDAO projectDAO = new ProjectDAO();
 
-    public ArrayList<Employee> employeesByProject(String projectName) {
-        return employeeDAO.employeesByProject(projectName);
+    public List<Employee> employeesByProject(String projectName) {
+        return EmployeeDAO.employeesByProject(projectName);
     }
 
-    public HashSet<Project> projectsByEmployee(Employee employee) {
-        return projectDAO.projectsByEmployee(employee);
-
+    public Set<Project> projectsByEmployee(Employee employee){
+        return ProjectDAO.projectsByEmployee(employee);
     }
 
+    public EmployeeDAO getEmployeeDAO() {
+        return employeeDAO;
+    }
 
+    public ProjectDAO getProjectDAO() {
+        return projectDAO;
+    }
 }
