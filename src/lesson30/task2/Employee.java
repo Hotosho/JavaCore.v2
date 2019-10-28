@@ -3,6 +3,7 @@ package lesson30.task2;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 public class Employee {
 
@@ -12,6 +13,7 @@ public class Employee {
     private Position position;
     private Department department;
     private Collection projects;
+
 
     public Employee(String firstName, String lastName, Date dateHired, Position position, Department department, Collection projects) {
         this.firstName = firstName;

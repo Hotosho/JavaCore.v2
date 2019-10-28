@@ -1,9 +1,9 @@
 package lesson30.task2;
 
-import java.util.Collection;
+
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
+
 
 public class ProjectDAO {
     private static Set<Project> projects;
@@ -26,6 +26,7 @@ public class ProjectDAO {
         return project;
     }
 
+    //список сотрудников, работающих над заданным проектом (достает имя проекта)
     public static Project getNameProject(String name) {
         if (projects == null)
             return null;
@@ -36,9 +37,11 @@ public class ProjectDAO {
         return null;
     }
 
+    //список проектов, в которых участвует заданный сотрудник
     public static Set<Project> projectsByEmployee(Employee employee) {
         HashSet<Project> listProjectsByEmployee;
         listProjectsByEmployee = (HashSet<Project>) employee.getProjects();
         return listProjectsByEmployee;
     }
+
 }

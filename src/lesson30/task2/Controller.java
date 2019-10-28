@@ -1,6 +1,5 @@
 package lesson30.task2;
 
-import java.util.List;
 import java.util.Set;
 
 public class Controller {
@@ -8,12 +7,20 @@ public class Controller {
     EmployeeDAO employeeDAO = new EmployeeDAO();
     ProjectDAO projectDAO = new ProjectDAO();
 
-    public List<Employee> employeesByProject(String projectName) {
+    public Set<Employee> employeesByProject(String projectName) {
         return EmployeeDAO.employeesByProject(projectName);
     }
 
     public Set<Project> projectsByEmployee(Employee employee){
         return ProjectDAO.projectsByEmployee(employee);
+    }
+
+    public Set<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType){
+        return EmployeeDAO.employeesByDepartmentWithoutProject(departmentType);
+    }
+
+    public Set<Employee> employeesWithoutProject(){
+        return EmployeeDAO.employeeWithoutTheProject();
     }
 
     public EmployeeDAO getEmployeeDAO() {
@@ -23,4 +30,5 @@ public class Controller {
     public ProjectDAO getProjectDAO() {
         return projectDAO;
     }
+
 }
