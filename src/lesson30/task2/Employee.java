@@ -12,10 +12,10 @@ public class Employee {
     private Date dateHired;
     private Position position;
     private Department department;
-    private Collection projects;
+    private Set<Project> projects;
 
 
-    public Employee(String firstName, String lastName, Date dateHired, Position position, Department department, Collection projects) {
+    public Employee(String firstName, String lastName, Date dateHired, Position position, Department department, Set<Project> projects) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateHired = dateHired;
@@ -44,7 +44,7 @@ public class Employee {
         return department;
     }
 
-    public Collection getProjects() {
+    public Set<Project> getProjects() {
         return projects;
     }
 

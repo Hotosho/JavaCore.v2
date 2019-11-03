@@ -10,6 +10,10 @@ public class EmployeeDAO {
         EmployeeDAO.employees = new HashSet<>();
     }
 
+    public EmployeeDAO() {
+
+    }
+
     public static Set<Employee> getEmployees() {
         return employees;
     }
@@ -29,15 +33,13 @@ public class EmployeeDAO {
         HashSet<Employee> listEmployeesByProject = new HashSet<>();
 
         for (Employee em : employees) {
-            if (em != null && em.getProjects() != null && em.getProjects().contains(ProjectDAO.getNameProject(projectName)))
-                ;
+            if (em != null && em.getProjects() != null && em.getProjects().contains(ProjectDAO.getNameProject(projectName)));
             listEmployeesByProject.add(em);
         }
         return listEmployeesByProject;
     }
 
-    //TODO
-    // если я правильно понял, если в метод есть вложенный метод, то все два метода должны иметь одну и туже структуру данных?
+
     //список сотрудников из заданного отдела, не участвующих ни в одном проекте
     public static Set<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
         Set<Employee> listEmployeesByDepartmentWithoutProject = new HashSet<>();
@@ -60,41 +62,47 @@ public class EmployeeDAO {
         return null;
     }
 
-    //TODO
-    // 1й способ
+    //список подчиненных для заданного руководителя (по всем проектам, которыми он руководит)
     public static Set<Employee> employeesByTeamLead(Employee lead) {
         HashSet<Employee> listEmployeesByTeamLead = new HashSet<>();
 
-
-        for (Project pr : lead.getProjects())
-    }
-
-
-    //TODO
-    // 2 способ
-    //список подчиненных для заданного руководителя (по всем проектам, которыми он руководит)
-   /* public static Set<Employee> employeesByTeamLead(Employee lead, String projectName) {
-        HashSet<Employee>listEmployeesByTeamLead = new HashSet<>();
-
-        for (Employee teamLead : employeesInTeamLead()){
-            for (Employee em : employeesByProject(projectName)){
-                if (em.getPosition() != Position.TEAM_LEAD)
-                    listEmployeesByTeamLead.add(em);
-            }
+        for (Project leadProject : lead.getProjects()){
+            listEmployeesByTeamLead.addAll(employeesByProject(leadProject.getName()));
         }
         return listEmployeesByTeamLead;
     }
 
-    // список Тимлидеров
-    public static Set<Employee> employeesInTeamLead() {
-        HashSet<Employee> listEmployeeNotTeamLead = new HashSet<>();
-        for (Employee em : getEmployees()) {
-            if (em != null && em.getPosition().equals(Position.TEAM_LEAD)) {
-                listEmployeeNotTeamLead.add(em);
+    //список руководителей для заданного сотрудника (по всем проектам, в которых он участвует)
+    public static Set<Employee> teamLeadsByEmployee(Employee employee){
+        HashSet<Employee> listTeamLeadsByEmployee = new HashSet<>();
+
+        for (Project employeeProject : employee.getProjects()){
+            listTeamLeadsByEmployee.addAll(employeesByProject(employeeProject.getName()));
+        }
+        return listTeamLeadsByEmployee;
+    }
+
+    //список сотрудников, участвующих в тех же проектах, что и заданный сотрудник
+    public static Set<Employee> employeesByProjectEmployee(Employee employee){
+        ProjectDAO projectDAO = new ProjectDAO();
+        HashSet<Employee> listEmployeesByProjectEmployee = new HashSet<>();
+
+        for (Project emProject : projectDAO.projectsByEmployee(employee)){
+            listEmployeesByProjectEmployee.addAll(employeesByProject(emProject.getName()));
+        }
+        return listEmployeesByProjectEmployee;
+    }
+
+    //список сотрудников, участвующих в проектах, выполняемых для заданного заказчика
+    public static Set<Employee> employeesByCustomerProjects(Customer customer){
+        HashSet<Employee> listEmployeesByCustomerProjects = new HashSet<>();
+
+        for (Project pr : ProjectDAO.getProjects()){
+            if (pr != null && pr.getCustomer().equals(customer)){
+                listEmployeesByCustomerProjects.addAll(employeesByProject(pr.getName()));
             }
         }
-        return listEmployeeNotTeamLead;
-    }*/
-
+        return listEmployeesByCustomerProjects;
+    }
 
 }

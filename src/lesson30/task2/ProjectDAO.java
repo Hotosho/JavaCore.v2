@@ -1,6 +1,7 @@
 package lesson30.task2;
 
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,11 +13,16 @@ public class ProjectDAO {
         ProjectDAO.projects = new HashSet<>();
     }
 
-    public Set<Project> getProjects() {
+    public ProjectDAO() {
+    }
+
+    public  static Set<Project> getProjects() {
         return projects;
     }
 
-    private Project addProject(Project project) {
+
+
+    public Project addProject(Project project) {
         projects.add(project);
         return project;
     }
@@ -39,9 +45,22 @@ public class ProjectDAO {
 
     //список проектов, в которых участвует заданный сотрудник
     public static Set<Project> projectsByEmployee(Employee employee) {
-        HashSet<Project> listProjectsByEmployee;
-        listProjectsByEmployee = (HashSet<Project>) employee.getProjects();
+        Set<Project> listProjectsByEmployee = new HashSet<>();
+        listProjectsByEmployee = employee.getProjects();
         return listProjectsByEmployee;
+    }
+
+    //список проектов, выполняемых для заданного заказчика
+    public static Set<Project> projectsByCustomer(Customer customer) {
+        HashSet<Project> listProjectsByCustomer = new HashSet<>();
+
+        for (Project pr : projects) {
+            if (pr.getCustomer() != null && pr.getCustomer().equals(customer)) {
+                listProjectsByCustomer.add(pr);
+            }
+
+        }
+        return listProjectsByCustomer;
     }
 
 }

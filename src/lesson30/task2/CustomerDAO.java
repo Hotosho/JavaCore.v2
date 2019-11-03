@@ -10,16 +10,20 @@ public class CustomerDAO {
         CustomerDAO.customers = new HashSet<>();
     }
 
+    public CustomerDAO() {
+
+    }
+
     public static Set<Customer> getCustomers() {
         return customers;
     }
 
-    private Customer addCustomer(Customer customer){
+    public static Customer addCustomer(Customer customer){
         customers.add(customer);
         return customer;
     }
 
-    private Customer removeCustomer(Customer customer){
+    public Customer removeCustomer(Customer customer){
         customers.remove(customer);
         return customer;
     }

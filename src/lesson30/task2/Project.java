@@ -1,6 +1,5 @@
 package lesson30.task2;
 
-import java.util.Collection;
 import java.util.Objects;
 
 public class Project {

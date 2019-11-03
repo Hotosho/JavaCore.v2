@@ -8,18 +8,21 @@ import java.util.TreeSet;
 public class Department{
 
     private DepartmentType type;
-    private Collection employees;
+    private Set<Department> employees;
 
-    public Department(DepartmentType type, Collection employees) {
+    public Department(DepartmentType type, Set<Department> employees) {
         this.type = type;
         this.employees = employees;
+    }
+
+    public Department(DepartmentType managers) {
     }
 
     public DepartmentType getType() {
         return type;
     }
 
-    public Collection getEmployees() {
+    public Set<Department> getEmployees() {
         return employees;
     }
 

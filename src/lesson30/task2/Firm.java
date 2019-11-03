@@ -1,30 +1,29 @@
 package lesson30.task2;
 
-import java.util.Collection;
+
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 public class Firm implements Comparable<Firm> {
 
     private Date dateFounded;
-    private Collection departments;
-    private Collection customers;
+    private Set<Department> departments;
+    private Set<Customer> customers;
 
-    public Firm(Date dateFounded, Collection departments, Collection customers) {
+    public Firm(Date dateFounded) {
         this.dateFounded = dateFounded;
-        this.departments = departments;
-        this.customers = customers;
     }
 
     public Date getDateFounded() {
         return dateFounded;
     }
 
-    public Collection getDepartments() {
+    public Set<Department> getDepartments() {
         return departments;
     }
 
-    public Collection getCustomers() {
+    public Set<Customer> getCustomers() {
         return customers;
     }
 

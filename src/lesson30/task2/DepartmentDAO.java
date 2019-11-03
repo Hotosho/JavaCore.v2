@@ -10,6 +10,10 @@ public class DepartmentDAO {
         DepartmentDAO.departments = new HashSet<>();
     }
 
+    public DepartmentDAO() {
+
+    }
+
     public static Set<Department> getDepartments() {
         return departments;
     }
