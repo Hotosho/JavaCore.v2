@@ -27,7 +27,7 @@ public class ProjectDAO {
         return project;
     }
 
-    private Project removeProject(Project project) {
+    public Project removeProject(Project project) {
         projects.remove(project);
         return project;
     }

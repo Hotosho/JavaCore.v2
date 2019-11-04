@@ -16,7 +16,7 @@ public class Demo {
         Customer customer4 = new Customer("CAPrimeMinister", "CA", 8989889);
         Customer customer5 = new Customer("ENGPrimeMinister", "ENG", 8765434);
 
-        CustomerDAO.addCustomer(customer1);
+        controller.getCustomerDAO().addCustomer(customer1);
         controller.getCustomerDAO().addCustomer(customer2);
         controller.getCustomerDAO().addCustomer(customer3);
         controller.getCustomerDAO().addCustomer(customer4);
@@ -114,7 +114,7 @@ public class Demo {
         DepartmentDAO.getDepartments().add(department3);
         DepartmentDAO.getDepartments().add(department4);
 
-        System.out.println(controller.employeesByProject("Apollo"));
+        System.out.println(controller.employeesByDepartmentWithoutProject(DepartmentType.DEVELOPERS));
 
 
 

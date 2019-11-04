@@ -18,12 +18,12 @@ public class EmployeeDAO {
         return employees;
     }
 
-    private static Employee addEmployee(Employee employee) {
+    public Employee addEmployee(Employee employee) {
         employees.add(employee);
         return employee;
     }
 
-    private static Employee removeEmployee(Employee employee) {
+    public Employee removeEmployee(Employee employee) {
         employees.remove(employee);
         return employee;
     }

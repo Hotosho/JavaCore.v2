@@ -18,12 +18,13 @@ public class CustomerDAO {
         return customers;
     }
 
-    public static Customer addCustomer(Customer customer){
+
+    public  Customer addCustomer(Customer customer) {
         customers.add(customer);
         return customer;
     }
 
-    public Customer removeCustomer(Customer customer){
+    public Customer removeCustomer(Customer customer) {
         customers.remove(customer);
         return customer;
     }

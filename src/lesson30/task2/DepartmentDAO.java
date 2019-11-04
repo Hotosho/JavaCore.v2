@@ -18,12 +18,12 @@ public class DepartmentDAO {
         return departments;
     }
 
-    private Department addDepartment(Department department){
+    public Department addDepartment(Department department){
         departments.add(department);
         return department;
     }
 
-    private Department removeDepartment(Department department){
+    public Department removeDepartment(Department department){
         departments.remove(department);
         return department;
     }
