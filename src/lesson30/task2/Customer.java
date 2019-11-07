@@ -3,7 +3,6 @@ package lesson30.task2;
 import java.util.Objects;
 
 public class Customer {
-
     private String name;
     private String country;
     private int monthlyPay;

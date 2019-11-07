@@ -5,20 +5,17 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Department{
-
+public class Department {
     private DepartmentType type;
     private Set<Department> employees;
 
-    /*public Department(DepartmentType type, Set<Department> employees) {
+    public Department(DepartmentType type, Set<Department> employees) {
         this.type = type;
         this.employees = employees;
-    }*/
-
-    public Department(DepartmentType managers) {
     }
 
-    public Department(DepartmentType managers, Set<Employee> developers) {
+    public Department(DepartmentType type) {
+        this.type = type;
     }
 
     public DepartmentType getType() {

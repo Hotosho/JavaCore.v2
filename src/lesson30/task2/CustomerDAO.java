@@ -6,18 +6,13 @@ import java.util.Set;
 public class CustomerDAO {
     private static Set<Customer> customers;
 
-    public CustomerDAO(Set<Customer> customers) {
-        CustomerDAO.customers = new HashSet<>();
-    }
-
-    public CustomerDAO() {
-
+    public static void CustomerDAO(Set<Customer> customers) {
+        customers = new HashSet<>();
     }
 
     public static Set<Customer> getCustomers() {
         return customers;
     }
-
 
     public  Customer addCustomer(Customer customer) {
         customers.add(customer);

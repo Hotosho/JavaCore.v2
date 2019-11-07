@@ -6,12 +6,8 @@ import java.util.Set;
 public class EmployeeDAO {
     private static Set<Employee> employees;
 
-    public EmployeeDAO(Set<Employee> employees) {
-        EmployeeDAO.employees = new HashSet<>();
-    }
-
-    public EmployeeDAO() {
-
+    public static void EmployeeDAO(Set<Employee> employees) {
+        employees = new HashSet<>();
     }
 
     public static Set<Employee> getEmployees() {
@@ -33,7 +29,8 @@ public class EmployeeDAO {
         HashSet<Employee> listEmployeesByProject = new HashSet<>();
 
         for (Employee em : employees) {
-            if (em != null && em.getProjects() != null && em.getProjects().contains(ProjectDAO.getNameProject(projectName)));
+            if (em != null && em.getProjects() != null && em.getProjects().contains(ProjectDAO.getNameProject(projectName)))
+                ;
             listEmployeesByProject.add(em);
         }
         return listEmployeesByProject;
@@ -66,39 +63,39 @@ public class EmployeeDAO {
     public static Set<Employee> employeesByTeamLead(Employee lead) {
         HashSet<Employee> listEmployeesByTeamLead = new HashSet<>();
 
-        for (Project leadProject : lead.getProjects()){
+        for (Project leadProject : lead.getProjects()) {
             listEmployeesByTeamLead.addAll(employeesByProject(leadProject.getName()));
         }
         return listEmployeesByTeamLead;
     }
 
     //список руководителей для заданного сотрудника (по всем проектам, в которых он участвует)
-    public static Set<Employee> teamLeadsByEmployee(Employee employee){
+    public static Set<Employee> teamLeadsByEmployee(Employee employee) {
         HashSet<Employee> listTeamLeadsByEmployee = new HashSet<>();
 
-        for (Project employeeProject : employee.getProjects()){
+        for (Project employeeProject : employee.getProjects()) {
             listTeamLeadsByEmployee.addAll(employeesByProject(employeeProject.getName()));
         }
         return listTeamLeadsByEmployee;
     }
 
     //список сотрудников, участвующих в тех же проектах, что и заданный сотрудник
-    public static Set<Employee> employeesByProjectEmployee(Employee employee){
+    public static Set<Employee> employeesByProjectEmployee(Employee employee) {
         ProjectDAO projectDAO = new ProjectDAO();
         HashSet<Employee> listEmployeesByProjectEmployee = new HashSet<>();
 
-        for (Project emProject : projectDAO.projectsByEmployee(employee)){
+        for (Project emProject : projectDAO.projectsByEmployee(employee)) {
             listEmployeesByProjectEmployee.addAll(employeesByProject(emProject.getName()));
         }
         return listEmployeesByProjectEmployee;
     }
 
     //список сотрудников, участвующих в проектах, выполняемых для заданного заказчика
-    public static Set<Employee> employeesByCustomerProjects(Customer customer){
+    public static Set<Employee> employeesByCustomerProjects(Customer customer) {
         HashSet<Employee> listEmployeesByCustomerProjects = new HashSet<>();
 
-        for (Project pr : ProjectDAO.getProjects()){
-            if (pr != null && pr.getCustomer().equals(customer)){
+        for (Project pr : ProjectDAO.getProjects()) {
+            if (pr != null && pr.getCustomer().equals(customer)) {
                 listEmployeesByCustomerProjects.addAll(employeesByProject(pr.getName()));
             }
         }

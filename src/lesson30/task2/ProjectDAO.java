@@ -1,7 +1,6 @@
 package lesson30.task2;
 
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,25 +8,21 @@ import java.util.Set;
 public class ProjectDAO {
     private static Set<Project> projects;
 
-    public ProjectDAO(Set<Project> projects) {
-        ProjectDAO.projects = new HashSet<>();
+    public static void ProjectDAO(Set<Project> projects) {
+        projects = new HashSet<>();
     }
 
-    public ProjectDAO() {
-    }
-
-    public  static Set<Project> getProjects() {
+    public static Set<Project> getProjects() {
         return projects;
     }
 
 
-
-    public Project addProject(Project project) {
+    public  Project addProject(Project project) {
         projects.add(project);
         return project;
     }
 
-    public Project removeProject(Project project) {
+    public  Project removeProject(Project project) {
         projects.remove(project);
         return project;
     }

@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
-public class Firm implements Comparable<Firm> {
+public class Firm {
 
     private Date dateFounded;
     private Set<Department> departments;
@@ -27,10 +27,7 @@ public class Firm implements Comparable<Firm> {
         return customers;
     }
 
-    @Override
-    public int compareTo(Firm fr) {
-        return fr.dateFounded.compareTo(this.dateFounded);
-    }
+
 
     @Override
     public boolean equals(Object o) {

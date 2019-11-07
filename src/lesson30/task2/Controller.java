@@ -19,7 +19,7 @@ public class Controller {
         return ProjectDAO.projectsByEmployee(employee);
     }
 
-    public Set<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
+    public  Set<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
         return EmployeeDAO.employeesByDepartmentWithoutProject(departmentType);
     }
 

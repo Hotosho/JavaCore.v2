@@ -34,11 +34,11 @@ public class Demo {
         controller.getFirmDAO().addFirm(firm4);
         controller.getFirmDAO().addFirm(firm5);
 
-        Project project1 = new Project("Apollo", CustomerDAO.addCustomer(customer1));
-        Project project2 = new Project("GiperLupa", CustomerDAO.addCustomer(customer2));
-        Project project3 = new Project("MadeInWroclaw", CustomerDAO.addCustomer(customer3));
-        Project project4 = new Project("Toronto", CustomerDAO.addCustomer(customer4));
-        Project project5 = new Project("Queen", CustomerDAO.addCustomer(customer5));
+        Project project1 = new Project("Apollo", customer1);
+        Project project2 = new Project("GiperLupa", customer2);
+        Project project3 = new Project("MadeInWroclaw", customer3);
+        Project project4 = new Project("Toronto", customer4);
+        Project project5 = new Project("Queen", customer5);
 
         controller.getProjectDAO().addProject(project1);
         controller.getProjectDAO().addProject(project2);
@@ -72,47 +72,21 @@ public class Demo {
         Employee employee12 = new Employee("Pablo", "Pikasso", new Date(), Position.DESIGNER,
                 new Department(DepartmentType.DESIGNERS), ProjectDAO.getProjects());
 
-        controller.getEmployeeDAO().getEmployees().add(employee1);
-        controller.getEmployeeDAO().getEmployees().add(employee2);
-        controller.getEmployeeDAO().getEmployees().add(employee3);
-        controller.getEmployeeDAO().getEmployees().add(employee4);
-        controller.getEmployeeDAO().getEmployees().add(employee5);
-        controller.getEmployeeDAO().getEmployees().add(employee6);
-        controller.getEmployeeDAO().getEmployees().add(employee7);
-        controller.getEmployeeDAO().getEmployees().add(employee8);
-        controller.getEmployeeDAO().getEmployees().add(employee9);
-        controller.getEmployeeDAO().getEmployees().add(employee10);
-        controller.getEmployeeDAO().getEmployees().add(employee11);
-
-        Set<Employee> developers = new HashSet<>();
-        developers.add(employee4);
-        developers.add(employee5);
-        developers.add(employee10);
-        developers.add(employee11);
-
-        Set<Employee> managers = new HashSet<>();
-        managers.add(employee1);
-        managers.add(employee2);
-        managers.add(employee3);
-
-        Set<Employee> finance = new HashSet<>();
-        finance.add(employee7);
-        finance.add(employee8);
-        finance.add(employee9);
-
-        Set<Employee> designers = new HashSet<>();
-        designers.add(employee12);
+        controller.getEmployeeDAO().addEmployee(employee1);
+        controller.getEmployeeDAO().addEmployee(employee2);
+        controller.getEmployeeDAO().addEmployee(employee3);
+        controller.getEmployeeDAO().addEmployee(employee4);
+        controller.getEmployeeDAO().addEmployee(employee5);
+        controller.getEmployeeDAO().addEmployee(employee6);
+        controller.getEmployeeDAO().addEmployee(employee7);
+        controller.getEmployeeDAO().addEmployee(employee8);
+        controller.getEmployeeDAO().addEmployee(employee9);
+        controller.getEmployeeDAO().addEmployee(employee10);
+        controller.getEmployeeDAO().addEmployee(employee11);
 
 
-        Department department1 = new Department(DepartmentType.MANAGERS, managers);
-        Department department2 = new Department(DepartmentType.DEVELOPERS, developers);
-        Department department3 = new Department(DepartmentType.DESIGNERS, designers);
-        Department department4 = new Department(DepartmentType.FINANCE, finance);
 
-        DepartmentDAO.getDepartments().add(department1);
-        DepartmentDAO.getDepartments().add(department2);
-        DepartmentDAO.getDepartments().add(department3);
-        DepartmentDAO.getDepartments().add(department4);
+
 
         System.out.println(controller.employeesByDepartmentWithoutProject(DepartmentType.DEVELOPERS));
 
