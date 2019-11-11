@@ -6,7 +6,11 @@ import java.util.Set;
 public class DepartmentDAO {
     private static Set<Department> departments;
 
-    public static void DepartmentDAO(Set<Department> departments) {
+    /*public static void DepartmentDAO(Set<Department> departments) {
+        departments = new HashSet<>();
+    }*/
+
+    public DepartmentDAO(){
         departments = new HashSet<>();
     }
 

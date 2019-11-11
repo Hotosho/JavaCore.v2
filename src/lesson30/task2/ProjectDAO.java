@@ -8,7 +8,11 @@ import java.util.Set;
 public class ProjectDAO {
     private static Set<Project> projects;
 
-    public static void ProjectDAO(Set<Project> projects) {
+    /*public static void ProjectDAO(Set<Project> projects) {
+        projects = new HashSet<>();
+    }*/
+
+    public ProjectDAO() {
         projects = new HashSet<>();
     }
 
@@ -18,7 +22,12 @@ public class ProjectDAO {
 
 
     public  Project addProject(Project project) {
-        projects.add(project);
+        try {
+            projects.add(project);
+        }
+        catch (Exception e){
+            System.out.println("Project is not transmitted");
+        }
         return project;
     }
 

@@ -6,7 +6,11 @@ import java.util.Set;
 public class EmployeeDAO {
     private static Set<Employee> employees;
 
-    public static void EmployeeDAO(Set<Employee> employees) {
+    /*public static void EmployeeDAO(Set<Employee> employees) {
+        employees = new HashSet<>();
+    }*/
+
+    public EmployeeDAO(){
         employees = new HashSet<>();
     }
 
@@ -15,7 +19,11 @@ public class EmployeeDAO {
     }
 
     public Employee addEmployee(Employee employee) {
-        employees.add(employee);
+        try {
+            employees.add(employee);
+        }catch (Exception e){
+            System.out.println("Employee is not transmitted");
+        }
         return employee;
     }
 

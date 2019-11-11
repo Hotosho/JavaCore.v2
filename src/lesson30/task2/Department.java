@@ -1,22 +1,25 @@
 package lesson30.task2;
 
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Department {
     private DepartmentType type;
     private Set<Department> employees;
 
-    public Department(DepartmentType type, Set<Department> employees) {
+    /*public Department(DepartmentType type, Set<Department> employees) {
         this.type = type;
         this.employees = employees;
+    }*/
+
+    public Department(DepartmentType developers, HashSet<Employee> dev) {
+
     }
+
 
     public Department(DepartmentType type) {
         this.type = type;
     }
+
 
     public DepartmentType getType() {
         return type;

@@ -19,8 +19,9 @@ public class Controller {
         return ProjectDAO.projectsByEmployee(employee);
     }
 
-    public  Set<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
-        return EmployeeDAO.employeesByDepartmentWithoutProject(departmentType);
+    public Set<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
+
+            return EmployeeDAO.employeesByDepartmentWithoutProject(departmentType);
     }
 
     public Set<Employee> employeesWithoutProject() {
@@ -31,7 +32,7 @@ public class Controller {
         return EmployeeDAO.employeesByTeamLead(lead);
     }
 
-    public Set<Employee> teamLeadsByEmployee(Employee employee){
+    public Set<Employee> teamLeadsByEmployee(Employee employee) {
         return EmployeeDAO.teamLeadsByEmployee(employee);
     }
 
