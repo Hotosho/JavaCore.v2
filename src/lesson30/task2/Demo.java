@@ -3,8 +3,7 @@ package lesson30.task2;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.function.ToDoubleBiFunction;
+
 
 public class Demo {
     public static void main(String[] args) {
@@ -37,63 +36,54 @@ public class Demo {
         controller.getFirmDAO().addFirm(firm5);
 
         HashSet<Project> setProject1 = new HashSet<>();
-
+        setProject1.add(new Project("Queen", customer1));
 
         HashSet<Project> setProject2 = new HashSet<>();
-        setProject2.add(new Project("Apollo", customer1));
+        setProject2.add(new Project("Apollo", customer2));
 
         HashSet<Project> setProject3 = new HashSet<>();
-        setProject3.add(new Project("GiperLupa", customer2));
+        setProject3.add(new Project("GiperLupa", customer3));
 
         HashSet<Project> setProject4 = new HashSet<>();
-        setProject4.add(new Project("MadeInWroclaw", customer3));
+        setProject4.add(new Project("MadeInWroclaw", customer4));
 
         HashSet<Project> setProject5 = new HashSet<>();
-        setProject5.add(new Project("Toronto", customer4));
+        setProject5.add(new Project("Toronto", customer5));
 
         HashSet<Project> setProject6 = new HashSet<>();
-        setProject6.add(new Project("Queen", customer5));
 
-        HashSet<Project> setProject7 = new HashSet<>();
-        setProject7.add(new Project("Barsa", customer1));
-
-        /*Project project1 = new Project("Apollo", customer1);
-        Project project2 = new Project("GiperLupa", customer2);
-        Project project3 = new Project("MadeInWroclaw", customer3);
-        Project project4 = new Project("Toronto", customer4);
-        Project project5 = new Project("Queen", customer5);
-
-        controller.getProjectDAO().addProject();
-        controller.getProjectDAO().addProject(project2);
-        controller.getProjectDAO().addProject(project3);
-        controller.getProjectDAO().addProject(project4);
-        controller.getProjectDAO().addProject(project5);*/
 
 
         Employee employee1 = new Employee("Max", "Pain", new Date(), Position.TEAM_LEAD,
-                new Department(DepartmentType.MANAGERS), setProject7);
+                new Department(DepartmentType.MANAGERS), setProject1);
         Employee employee2 = new Employee("Ilon", "Task", new Date(), Position.TEAM_LEAD,
                 new Department(DepartmentType.MANAGERS), setProject2);
         Employee employee3 = new Employee("Bill", "Gatc", new Date(), Position.TEAM_LEAD,
                 new Department(DepartmentType.MANAGERS), setProject3);
+
+
         Employee employee4 = new Employee("Leo", "Messi", new Date(), Position.DEVELOPER,
                 new Department(DepartmentType.DEVELOPERS), setProject1);
         Employee employee5 = new Employee("Cristiano", "Ronaldo", new Date(), Position.DEVELOPER,
-                new Department(DepartmentType.DEVELOPERS), setProject4);
+                new Department(DepartmentType.DEVELOPERS), setProject2);
         Employee employee6 = new Employee("Harry", "Kaine", new Date(), Position.DEVELOPER,
-                new Department(DepartmentType.DEVELOPERS), setProject7);
-        Employee employee10 = new Employee("Rikardo", "Karvaelo", new Date(), Position.DEVELOPER,
-                new Department(DepartmentType.DEVELOPERS), setProject5);
-        Employee employee11 = new Employee("Pompadyr", "Idiotow", new Date(), Position.DEVELOPER,
-                new Department(DepartmentType.DEVELOPERS), setProject6);
-        Employee employee7 = new Employee("Pep", "Gwardiola", new Date(), Position.FINANCE,
-                new Department(DepartmentType.FINANCE), setProject7);
-        Employee employee8 = new Employee("Enrike", "Iglesijas", new Date(), Position.FINANCE,
-                new Department(DepartmentType.FINANCE), setProject4);
-        Employee employee9 = new Employee("Rodzer", "Federer", new Date(), Position.FINANCE,
-                new Department(DepartmentType.FINANCE), setProject6);
+                new Department(DepartmentType.DEVELOPERS), setProject3);
+        Employee employee7 = new Employee("Rikardo", "Karvaelo", new Date(), Position.DEVELOPER,
+                new Department(DepartmentType.DEVELOPERS), setProject4);
+        Employee employee8 = new Employee("Pompadyr", "Idiotow", new Date(), Position.DEVELOPER,
+                new Department(DepartmentType.DEVELOPERS), setProject1);
+
+
+        Employee employee9 = new Employee("Pep", "Gwardiola", new Date(), Position.FINANCE,
+                new Department(DepartmentType.FINANCE), setProject1);
+        Employee employee10 = new Employee("Enrike", "Iglesijas", new Date(), Position.FINANCE,
+                new Department(DepartmentType.FINANCE), setProject2);
+        Employee employee11 = new Employee("Rodzer", "Federer", new Date(), Position.FINANCE,
+                new Department(DepartmentType.FINANCE), setProject5);
+
+
         Employee employee12 = new Employee("Pablo", "Pikasso", new Date(), Position.DESIGNER,
-                new Department(DepartmentType.DESIGNERS), setProject7);
+                new Department(DepartmentType.DESIGNERS), setProject6);
 
         controller.getEmployeeDAO().addEmployee(employee1);
         controller.getEmployeeDAO().addEmployee(employee2);
@@ -115,10 +105,10 @@ public class Demo {
         dev.add(employee10);
         dev.add(employee11);
 
-        HashSet<Employee> prMan = new HashSet<>();
-        prMan.add(employee1);
-        prMan.add(employee2);
-        prMan.add(employee3);
+        HashSet<Employee> mang = new HashSet<>();
+        mang.add(employee1);
+        mang.add(employee2);
+        mang.add(employee3);
 
         HashSet<Employee> fin = new HashSet<>();
         fin.add(employee7);
@@ -126,65 +116,64 @@ public class Demo {
         fin.add(employee9);
 
         Department developer = new Department(DepartmentType.DEVELOPERS, dev);
-        Department projectManager = new Department(DepartmentType.MANAGERS, prMan);
+        Department projectManager = new Department(DepartmentType.MANAGERS, mang);
         Department depFinance = new Department(DepartmentType.FINANCE, fin);
 
         DepartmentDAO.getDepartments().add(developer);
         DepartmentDAO.getDepartments().add(projectManager);
         DepartmentDAO.getDepartments().add(depFinance);
 
-        //TODO
-        // не рабоает как в ТЗ
-        System.out.println("список сотрудников, работающих над заданным проектом");
-        System.out.println(controller.employeesByProject("Apollo"));
-
-        System.out.println("**************");
-        //TODO
-        // не рабоает как в ТЗ
-        System.out.println("список сотрудников из заданного отдела, не участвующих ни в одном проекте");
-        System.out.println(controller.employeesByDepartmentWithoutProject(DepartmentType.DEVELOPERS));
+        // МЕТОД №1
+        System.out.println("1 - "+"список сотрудников, работающих над заданным проектом");
+        System.out.println(controller.employeesByProject("Queen"));
 
         System.out.println("**************");
 
-        System.out.println("список проектов, в которых участвует заданный сотрудник");//+++
+        // МЕТОД №2
+        System.out.println("2 - "+"список сотрудников из заданного отдела, не участвующих ни в одном проекте");
+        System.out.println(controller.employeesByDepartmentWithoutProject(DepartmentType.DESIGNERS));
+
+        System.out.println("**************");
+
+        //МЕТОД №3
+        System.out.println("3 - "+"список проектов, в которых участвует заданный сотрудник");
         System.out.println(controller.projectsByEmployee(employee1));
 
         System.out.println("**************");
-        //TODO
-        // не рабоает как в ТЗ
-        System.out.println("список сотрудников, не участвующих ни в одном проекте");
+
+        //МЕТОД №4
+        System.out.println("4 - "+"список сотрудников, не участвующих ни в одном проекте");
         System.out.println(controller.employeesWithoutProject());
 
         System.out.println("**************");
-        //TODO
-        // не рабоает как в ТЗ
-        System.out.println("список подчиненных для заданного руководителя (по всем проектам, которыми он руководит)");
+
+        //МЕТОД №5
+        System.out.println("5 - "+"список подчиненных для заданного руководителя (по всем проектам, которыми он руководит)");
         System.out.println(controller.employeesByTeamLead(employee1));
 
         System.out.println("**************");
-        //TODO
-        // не рабоает как в ТЗ
-        System.out.println("список руководителей для заданного сотрудника (по всем проектам, в которых он участвует");
-        System.out.println(controller.teamLeadsByEmployee(employee7));
+
+        //МЕТОД №6
+        System.out.println("6 - "+"список руководителей для заданного сотрудника (по всем проектам, в которых он участвует");
+        System.out.println(controller.teamLeadsByEmployee(employee5));
 
         System.out.println("**************");
-        //TODO
-        // не рабоает как в ТЗ
-        System.out.println("список сотрудников, участвующих в тех же проектах, что и заданный сотрудник");
-        System.out.println(controller.employeesByProjectEmployee(employee1));
+
+        //МЕТОД №7
+        System.out.println("7 - "+"список сотрудников, участвующих в тех же проектах, что и заданный сотрудник");
+        System.out.println(controller.employeesByProjectEmployee(employee5));
 
         System.out.println("**************");
-        //TODO
-        // не рабоает как в ТЗ
-        System.out.println("список сотрудников, участвующих в проектах, выполняемых для заданного заказчика");
-        System.out.println(controller.employeesByCustomerProjects(customer1));
+
+        //МЕТОД №8
+        System.out.println("8 - "+"список сотрудников, участвующих в проектах, выполняемых для заданного заказчика");
+        System.out.println(controller.employeesByCustomerProjects(customer5));
 
         System.out.println("**************");
-        //TODO
-        // не рабоает как в ТЗ
-        System.out.println("список проектов, выполняемых для заданного заказчика");
+
+        //МЕТОД №9
+        System.out.println("9 - "+"список проектов, выполняемых для заданного заказчика");
         System.out.println(controller.projectsByCustomer(customer1));
-
 
 
     }
