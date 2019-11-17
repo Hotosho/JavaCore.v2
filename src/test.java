@@ -1,6 +1,6 @@
 public class test {
     public static void main(String[] args) {
-        String testCommitToGitHub = "test";
+        String testCommitToGitHub = "test1";
 
     }
 }
