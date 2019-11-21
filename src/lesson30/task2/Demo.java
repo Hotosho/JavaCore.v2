@@ -123,49 +123,49 @@ public class Demo {
         DepartmentDAO.getDepartments().add(projectManager);
         DepartmentDAO.getDepartments().add(depFinance);
 
-        // МЕТОД №1
+        // МЕТОД №1++++++
         System.out.println("1 - "+"список сотрудников, работающих над заданным проектом");
         System.out.println(controller.employeesByProject("Queen"));
 
         System.out.println("**************");
 
-        // МЕТОД №2
+        // МЕТОД №2++++++
         System.out.println("2 - "+"список сотрудников из заданного отдела, не участвующих ни в одном проекте");
         System.out.println(controller.employeesByDepartmentWithoutProject(DepartmentType.DESIGNERS));
 
         System.out.println("**************");
 
-        //МЕТОД №3
+        //МЕТОД №3++++++
         System.out.println("3 - "+"список проектов, в которых участвует заданный сотрудник");
         System.out.println(controller.projectsByEmployee(employee1));
 
         System.out.println("**************");
 
-        //МЕТОД №4
+        //МЕТОД №4+++++
         System.out.println("4 - "+"список сотрудников, не участвующих ни в одном проекте");
         System.out.println(controller.employeesWithoutProject());
 
         System.out.println("**************");
 
-        //МЕТОД №5
+        //МЕТОД №5++++++
         System.out.println("5 - "+"список подчиненных для заданного руководителя (по всем проектам, которыми он руководит)");
         System.out.println(controller.employeesByTeamLead(employee1));
 
         System.out.println("**************");
 
-        //МЕТОД №6
+        //МЕТОД №6++++++
         System.out.println("6 - "+"список руководителей для заданного сотрудника (по всем проектам, в которых он участвует");
-        System.out.println(controller.teamLeadsByEmployee(employee5));
+        System.out.println(controller.teamLeadsByEmployee(employee6));
 
         System.out.println("**************");
 
-        //МЕТОД №7
+        //МЕТОД №7++++++
         System.out.println("7 - "+"список сотрудников, участвующих в тех же проектах, что и заданный сотрудник");
         System.out.println(controller.employeesByProjectEmployee(employee5));
 
         System.out.println("**************");
 
-        //МЕТОД №8
+        //МЕТОД №8++++++
         System.out.println("8 - "+"список сотрудников, участвующих в проектах, выполняемых для заданного заказчика");
         System.out.println(controller.employeesByCustomerProjects(customer5));
 

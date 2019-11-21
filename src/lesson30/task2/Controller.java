@@ -45,7 +45,7 @@ public class Controller {
     }
 
     public Set<Project> projectsByCustomer(Customer customer) {
-        return ProjectDAO.projectsByCustomer(customer);
+        return EmployeeDAO.projectsByCustomer(customer);
     }
 
 

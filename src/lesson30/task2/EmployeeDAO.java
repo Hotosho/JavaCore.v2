@@ -6,11 +6,8 @@ import java.util.Set;
 public class EmployeeDAO {
     private static Set<Employee> employees;
 
-    /*public static void EmployeeDAO(Set<Employee> employees) {
-        employees = new HashSet<>();
-    }*/
 
-    public EmployeeDAO(){
+    public EmployeeDAO() {
         employees = new HashSet<>();
     }
 
@@ -21,7 +18,7 @@ public class EmployeeDAO {
     public Employee addEmployee(Employee employee) {
         try {
             employees.add(employee);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Employee is not transmitted");
         }
         return employee;
@@ -32,42 +29,42 @@ public class EmployeeDAO {
         return employee;
     }
 
-    //список сотрудников, работающих над заданным проектом
+    //1- список сотрудников, работающих над заданным проектом+++
     public static Set<Employee> employeesByProject(String projectName) {
-        HashSet<Employee> listEmployeesByProject = new HashSet<>();
-
+        HashSet<Employee> employeesByProject = new HashSet<>();
         for (Employee em : employees) {
-            if (em != null && em.getProjects() != null && em.getProjects().contains(ProjectDAO.getNameProject(projectName)))
-                ;
-            listEmployeesByProject.add(em);
+            for (Project pr : em.getProjects()) {
+                if (pr != null && projectName.equals(pr.getName())) {
+                    employeesByProject.add(em);
+                    break;
+                }
+            }
         }
-        return listEmployeesByProject;
+        return employeesByProject;
     }
 
-
-    //список сотрудников из заданного отдела, не участвующих ни в одном проекте
+    //2- список сотрудников из заданного отдела, не участвующих ни в одном проекте+++
     public static Set<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
         Set<Employee> listEmployeesByDepartmentWithoutProject = new HashSet<>();
 
         for (Employee em : employeeWithoutTheProject()) {
-            if (em.getDepartment().getType() == departmentType)
+            if (em.getDepartment().getType().equals(departmentType))
                 listEmployeesByDepartmentWithoutProject.add(em);
         }
         return listEmployeesByDepartmentWithoutProject;
     }
 
-    //список сотрудников, не участвующих ни в одном проекте
+    //4- список сотрудников, не участвующих ни в одном проекте+++
     public static Set<Employee> employeeWithoutTheProject() {
         HashSet<Employee> listEmployeeWithoutTheProject = new HashSet<>();
         for (Employee em : getEmployees()) {
             if (em != null && em.getProjects() != null && em.getProjects().isEmpty())
                 listEmployeeWithoutTheProject.add(em);
-            return listEmployeeWithoutTheProject;
         }
-        return null;
+        return listEmployeeWithoutTheProject;
     }
 
-    //список подчиненных для заданного руководителя (по всем проектам, которыми он руководит)
+    //5- список подчиненных для заданного руководителя (по всем проектам, которыми он руководит)+++
     public static Set<Employee> employeesByTeamLead(Employee lead) {
         HashSet<Employee> listEmployeesByTeamLead = new HashSet<>();
 
@@ -77,37 +74,51 @@ public class EmployeeDAO {
         return listEmployeesByTeamLead;
     }
 
-    //список руководителей для заданного сотрудника (по всем проектам, в которых он участвует)
+
+    // 6- список руководителей для заданного сотрудника (по всем проектам, в которых он участвует)+++
     public static Set<Employee> teamLeadsByEmployee(Employee employee) {
         HashSet<Employee> listTeamLeadsByEmployee = new HashSet<>();
 
-        for (Project employeeProject : employee.getProjects()) {
-            listTeamLeadsByEmployee.addAll(employeesByProject(employeeProject.getName()));
+        for (Employee em : employeesByProjectEmployee(employee)){
+            if (em != null && em.getPosition().equals(Position.TEAM_LEAD))
+                listTeamLeadsByEmployee.add(em);
         }
         return listTeamLeadsByEmployee;
+
     }
 
-    //список сотрудников, участвующих в тех же проектах, что и заданный сотрудник
+
+    // 7- список сотрудников, участвующих в тех же проектах, что и заданный сотрудник+++
     public static Set<Employee> employeesByProjectEmployee(Employee employee) {
         ProjectDAO projectDAO = new ProjectDAO();
         HashSet<Employee> listEmployeesByProjectEmployee = new HashSet<>();
 
-        for (Project emProject : projectDAO.projectsByEmployee(employee)) {
-            listEmployeesByProjectEmployee.addAll(employeesByProject(emProject.getName()));
+        for (Project pr : projectDAO.projectsByEmployee(employee)) {
+            listEmployeesByProjectEmployee.addAll(employeesByProject(pr.getName()));
         }
         return listEmployeesByProjectEmployee;
     }
 
-    //список сотрудников, участвующих в проектах, выполняемых для заданного заказчика
+    //8- список сотрудников, участвующих в проектах, выполняемых для заданного заказчика----
     public static Set<Employee> employeesByCustomerProjects(Customer customer) {
         HashSet<Employee> listEmployeesByCustomerProjects = new HashSet<>();
 
-        for (Project pr : ProjectDAO.getProjects()) {
-            if (pr != null && pr.getCustomer().equals(customer)) {
-                listEmployeesByCustomerProjects.addAll(employeesByProject(pr.getName()));
-            }
+       for (Project pr : ProjectDAO.getProjects()){
+           if (pr != null && pr.getCustomer().equals(customer))
+               listEmployeesByCustomerProjects.addAll(employeesByProject(pr.getName()));
+       }
+       return listEmployeesByCustomerProjects;
+    }
+
+    //9- список проектов, выполняемых для заданного заказчика----
+    public static Set<Project> projectsByCustomer(Customer customer){
+        HashSet<Project> listProjectsByCustomer = new HashSet<>();
+
+        for (Project pr : ProjectDAO.getProjects()){
+            if (pr != null && pr.getCustomer().equals(customer))
+                listProjectsByCustomer.add(pr);
         }
-        return listEmployeesByCustomerProjects;
+        return listProjectsByCustomer;
     }
 
 }
