@@ -45,13 +45,13 @@ public class EmployeeDAO {
 
     //2- список сотрудников из заданного отдела, не участвующих ни в одном проекте+++
     public static Set<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
-        Set<Employee> listEmployeesByDepartmentWithoutProject = new HashSet<>();
+        Set<Employee> EmplDepartWithoutProject = new HashSet<>();
 
         for (Employee em : employeeWithoutTheProject()) {
             if (em.getDepartment().getType().equals(departmentType))
-                listEmployeesByDepartmentWithoutProject.add(em);
+                EmplDepartWithoutProject.add(em);
         }
-        return listEmployeesByDepartmentWithoutProject;
+        return EmplDepartWithoutProject;
     }
 
     //4- список сотрудников, не участвующих ни в одном проекте+++
