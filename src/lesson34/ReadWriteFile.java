@@ -1,18 +1,16 @@
 package lesson34;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.*;
 
 public class ReadWriteFile {
     public static void main(String[] args) throws FileNotFoundException, InterruptedException {
 
         readFile("/Users/mykytakazimirov/Desktop/HomeWork33.txt");
-        writeFile("/Users/mykytakazimirov/Desktop/test1.txt");
+        //writeFile("/Users/mykytakazimirov/Desktop/test1.txt");
 
     }
 
-    public static void readFile(String path) throws FileNotFoundException {
+    private static void readFile(String path) throws FileNotFoundException {
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
