@@ -1,5 +1,7 @@
 package lesson34.Homework;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.*;
 
 public class Solution {
@@ -106,6 +108,27 @@ public class Solution {
         } catch (IOException e) {
             throw new IOException("Can not write to file " + path);
         }
+    }
+
+
+    public static void copyFileContent(String fileFromPath, String fileToPath) throws Exception {
+        validate(fileFromPath, fileToPath);
+        FileReader fileFrom = new FileReader(fileFromPath);
+        FileWriter fileTo = new FileWriter(fileToPath);
+
+        while (fileFrom.ready()) {
+            int test = fileFrom.read();
+            fileTo.write(test);
+        }
+        fileFrom.close();
+        fileTo.close();
+    }
+
+    public static void copyFileContentApacheIO(String fileFromPath, String fileToPath) throws IOException {
+        File fileFrom = new File(fileFromPath);
+        File fileTo = new File(fileToPath);
+        FileUtils.copyFile(fileFrom, fileTo);
+
     }
 
 
