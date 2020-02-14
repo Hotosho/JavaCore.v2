@@ -1,16 +1,8 @@
-package lesson34.Homework;
-
-import org.apache.commons.io.FileUtils;
+package lesson34.Homework.Solution2;
 
 import java.io.*;
 
 public class Solution {
-
-    /*public static void transferFileContent(String fileFromPath, String fileToPath) throws Exception {
-        validate(fileFromPath, fileToPath);
-        writeToFile(fileToPath, readFile(fileFromPath));
-        deleteFromFile(fileFromPath);
-    }
 
     public static void transferSentences(String fileFromPath, String fileToPath, String word) throws Exception {
         validate(fileFromPath, fileToPath);
@@ -19,36 +11,11 @@ public class Solution {
         deleteFromFileSentencesWithWord(fileFromPath, word);
     }
 
-    private static StringBuffer readFile(String path) {
-        StringBuffer sb = new StringBuffer();
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-                sb.append("\n");
-            }
-            sb.replace(sb.length() - 1, sb.length(), "");
-        } catch (FileNotFoundException e) {
-            System.err.println("File does not exist");
-        } catch (IOException e) {
-            System.err.println("Reading from file " + path + " failed");
-        }
-        return sb;
-    }
-
     private static void writeToFile(String path, StringBuffer contentToWrite) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
             bw.append(contentToWrite);
         } catch (IOException e) {
             System.err.println("Can't write to file" + path);
-        }
-    }
-
-    private static void deleteFromFile(String path) throws IOException {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
-            bufferedWriter.write("");
-        } catch (IOException e) {
-            throw new IOException("Can not write to file " + path);
         }
     }
 
@@ -79,7 +46,6 @@ public class Solution {
         return result;
     }
 
-
     private static void deleteFromFileSentencesWithWord(String path, String word) throws IOException {
         StringBuffer result = new StringBuffer();
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
@@ -95,8 +61,6 @@ public class Solution {
                 delete = "";
                 result.append(delete);
             }
-
-            //result.replace(result.length() - 1, result.length(), "");
         } catch (FileNotFoundException e) {
             throw new FileNotFoundException("File does not exist " + path);
         } catch (IOException e) {
@@ -109,28 +73,6 @@ public class Solution {
             throw new IOException("Can not write to file " + path);
         }
     }
-
-
-    public static void copyFileContent(String fileFromPath, String fileToPath) throws Exception {
-        validate(fileFromPath, fileToPath);
-        FileReader fileFrom = new FileReader(fileFromPath);
-        FileWriter fileTo = new FileWriter(fileToPath);
-
-        while (fileFrom.ready()) {
-            int test = fileFrom.read();
-            fileTo.write(test);
-        }
-        fileFrom.close();
-        fileTo.close();
-    }
-
-    public static void copyFileContentApacheIO(String fileFromPath, String fileToPath) throws IOException {
-        File fileFrom = new File(fileFromPath);
-        File fileTo = new File(fileToPath);
-        FileUtils.copyFile(fileFrom, fileTo);
-
-    }
-
 
     private static void validate(String fileFromPath, String fileToPath) throws Exception {
         File fileFrom = new File(fileFromPath);
@@ -148,6 +90,5 @@ public class Solution {
         if (!fileTo.canWrite()) {
             throw new Exception("File " + fileTo + " does not have permission to be write");
         }
-    }*/
-
+    }
 }
