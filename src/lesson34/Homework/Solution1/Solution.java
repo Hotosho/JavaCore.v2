@@ -11,14 +11,15 @@ public class Solution {
     }
 
     private static void writeToFile(String path, StringBuffer contentToWrite) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, false))) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
+            bw.append("\n");
             bw.append(contentToWrite);
         } catch (IOException e) {
             System.err.println("Can't write to file" + path);
         }
     }
 
-    private static StringBuffer readFile(String path) {
+    private static StringBuffer readFile(String path) throws Exception {
         StringBuffer sb = new StringBuffer();
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
@@ -26,9 +27,10 @@ public class Solution {
                 sb.append(line);
                 sb.append("\n");
             }
-            sb.replace(sb.length() - 1, sb.length(), "");
-        } catch (FileNotFoundException e) {
-            System.err.println("File does not exist");
+            if (sb.length() > 0) {
+                sb.replace(sb.length() - 1, sb.length(), "");
+            } else throw new Exception("File " + path + " empty");
+
         } catch (IOException e) {
             System.err.println("Reading from file " + path + " failed");
         }
