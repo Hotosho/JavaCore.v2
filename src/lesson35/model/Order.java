@@ -1,7 +1,4 @@
-package lesson35.Order;
-
-import  lesson35.Room.Room;
-import lesson35.User.User;
+package lesson35.model;
 
 import java.util.Date;
 

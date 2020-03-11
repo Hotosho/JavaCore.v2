@@ -1,4 +1,4 @@
-package lesson35.Room;
+package lesson35.controller;
 
 public class RoomController {
 }

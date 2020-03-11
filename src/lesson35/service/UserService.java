@@ -1,4 +1,7 @@
-package lesson35.User;
+package lesson35.service;
+
+import lesson35.model.User;
+import lesson35.repository.UserRepository;
 
 public class UserService {
     // проверяет бизнес правила
@@ -7,10 +10,9 @@ public class UserService {
 
     private UserRepository userRepository = new UserRepository();
 
-    public User registerUser(User user) {
+    public User registerUser(User user) throws Exception {
         //check buinesLogic
         //if logic is ok (if wrong = null)
         return userRepository.registerUser(user);
-
     }
 }

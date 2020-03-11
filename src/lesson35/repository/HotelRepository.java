@@ -1,4 +1,4 @@
-package lesson35.Hotel;
+package lesson35.repository;
 
 public class HotelRepository {
 }

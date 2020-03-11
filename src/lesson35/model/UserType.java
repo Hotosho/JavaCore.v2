@@ -1,4 +1,4 @@
-package lesson35.User;
+package lesson35.model;
 
 public enum UserType {
     ADMIN,

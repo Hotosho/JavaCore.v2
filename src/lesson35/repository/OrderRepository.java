@@ -1,4 +1,4 @@
-package lesson35.Order;
+package lesson35.repository;
 
 public class OrderRepository {
 }
