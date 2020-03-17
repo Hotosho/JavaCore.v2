@@ -13,7 +13,9 @@ public class UserRepository {
     public User registerUser(User user) throws Exception {
         //save user to db (file)
         // cсгенерировать idUser и передать это все в бд
-        writeToBD("/Users/mykytakazimirov/Desktop/UserDb.txt", user);
+        checkNameUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
+        checkIdUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
+        writeToBD("/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt", user);
         return user;
     }
 
@@ -25,16 +27,43 @@ public class UserRepository {
             if (user.getId() < 0) {
                 user.setId(-1 * user.getId());
             }
-            bw.append(String.valueOf(user)).append(",");
-            bw.append(user.getUserName()).append(",");
-            bw.append(user.getPassword()).append(",");
-            bw.append(user.getCountry()).append(",");
-            bw.append(user.getUserType().toString());
+            bw.write(user.toString());
             bw.append("\n");
 
         } catch (IOException e) {
             System.err.println(user + " Can't write to file");
         }
+    }
+
+    private StringBuffer readUserBD(String filePath) throws Exception {
+        validate(filePath);
+        StringBuffer sb = new StringBuffer();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File does not exist");
+        } catch (IOException e) {
+            System.err.println("File with path " + filePath + " not found");
+        }
+        return sb;
+    }
+
+    private boolean checkNameUser(User user, String filePath) throws Exception {
+        if (user.getUserName().contentEquals(readUserBD(filePath))) {
+            throw new Exception(user + " user with the same name already exists");
+        }
+        return false;
+    }
+
+    private boolean checkIdUser(User user, String filePath) throws Exception {
+        if (readUserBD(filePath).equals(user.getId())) {
+            throw new Exception(user + " user already exists");
+        }
+        return false;
     }
 
     private static void validate(String filePath) throws Exception {
