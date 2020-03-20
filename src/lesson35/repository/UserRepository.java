@@ -3,9 +3,10 @@ package lesson35.repository;
 import lesson35.model.User;
 
 import java.io.*;
-import java.util.Random;
+import java.util.*;
 
 public class UserRepository {
+    //private User user = new User();
     //считать данные - считывание файла
     //обработка данных - маппинг данных
 
@@ -15,11 +16,11 @@ public class UserRepository {
         // cсгенерировать idUser и передать это все в бд
         checkNameUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
         checkIdUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
-        writeToBD("/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt", user);
+        writeToBD(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
         return user;
     }
 
-    private void writeToBD(String path, User user) throws Exception {
+    private void writeToBD(User user, String path) throws Exception {
         validate(path);
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
             Random random = new Random();
@@ -28,20 +29,21 @@ public class UserRepository {
                 user.setId(-1 * user.getId());
             }
             bw.write(user.toString());
-            bw.append("\n");
+            //bw.append("\n");
+
 
         } catch (IOException e) {
             System.err.println(user + " Can't write to file");
         }
     }
 
-    private StringBuffer readUserBD(String filePath) throws Exception {
+    private List<String> readUserBD(String filePath) throws Exception {
         validate(filePath);
-        StringBuffer sb = new StringBuffer();
+        List<String> userList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                sb.append(line);
+                userList.add(line);
             }
 
         } catch (FileNotFoundException e) {
@@ -49,21 +51,34 @@ public class UserRepository {
         } catch (IOException e) {
             System.err.println("File with path " + filePath + " not found");
         }
-        return sb;
+        return userList;
     }
 
-    private boolean checkNameUser(User user, String filePath) throws Exception {
-        if (user.getUserName().contentEquals(readUserBD(filePath))) {
-            throw new Exception(user + " user with the same name already exists");
+    private List<String> checkNameUser(User user, String filePath) throws Exception {
+        List<String> userList = new ArrayList<>();
+        String[] arrayUsers = readUserBD(filePath).toArray(new String[0]);
+        for (String usr : arrayUsers) {
+            if (usr != null && usr.contains(user.getUserName())) {
+                throw new Exception(user + " with this name exists");
+            } else {
+                userList.add(usr);
+            }
         }
-        return false;
+        return userList;
     }
 
-    private boolean checkIdUser(User user, String filePath) throws Exception {
-        if (readUserBD(filePath).equals(user.getId())) {
-            throw new Exception(user + " user already exists");
+
+    private List<String> checkIdUser(User user, String filePath) throws Exception {
+        List<String> userList = new ArrayList<>();
+        String[] arrayUsers = readUserBD(filePath).toArray(new String[0]);
+        for (String usr : arrayUsers) {
+            long id = user.getId();
+            String strId = Long.toString(id);
+            if (usr != null && usr.contains(strId)) {
+                throw new Exception(user + " with this ID exists");
+            }
         }
-        return false;
+        return userList;
     }
 
     private static void validate(String filePath) throws Exception {

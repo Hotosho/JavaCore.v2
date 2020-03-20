@@ -7,9 +7,19 @@ import lesson35.repository.UserRepository;
 public class Demo {
     public static void main(String[] args) throws Exception {
         UserRepository userRepository = new UserRepository();
-        User user1 = new User(0,"AAAAAAA", "12df45", "PL", UserType.USERS);
-        userRepository.registerUser(user1);
-        //userRepository.readUserBD("/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
+        User user1 = new User(1,"nameTest1", "12df45", "PL", UserType.USERS);
+        User user2 = new User(2,"nameTest2", "09876", "PL", UserType.USERS);
+        User user3 = new User(30990,"Kurwa", "94781", "PL", UserType.USERS);
+        //userRepository.registerUser(user1);
+        //userRepository.registerUser(user2);
+        //userRepository.registerUser(user3);
+        //userRepository.writeToBD("/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt", user2);
+        //userRepository.checkNameUser(user3,"/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
+        //userRepository.checkIdUser(user3,"/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
+
+
+
+
 
 
 
