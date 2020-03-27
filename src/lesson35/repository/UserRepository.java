@@ -14,8 +14,8 @@ public class UserRepository {
     public User registerUser(User user) throws Exception {
         //save user to db (file)
         // cсгенерировать idUser и передать это все в бд
-        checkNameUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
-        checkIdUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
+        //checkNameUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
+        //checkIdUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
         writeToBD(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
         return user;
     }
@@ -30,8 +30,6 @@ public class UserRepository {
             }
             bw.write(user.toString());
             //bw.append("\n");
-
-
         } catch (IOException e) {
             System.err.println(user + " Can't write to file");
         }
@@ -81,7 +79,7 @@ public class UserRepository {
         return userList;
     }
 
-    private static void validate(String filePath) throws Exception {
+    protected void validate(String filePath) throws Exception {
         File fileBD = new File(filePath);
 
         if (!fileBD.exists()) {

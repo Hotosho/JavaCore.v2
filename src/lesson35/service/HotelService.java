@@ -1,4 +1,15 @@
 package lesson35.service;
 
+import lesson35.model.Hotel;
+import lesson35.repository.HotelRepository;
+
+import java.util.List;
+
 public class HotelService {
+
+    private HotelRepository hotelRepository = new HotelRepository();
+
+    public String findHotelByName(String name) throws Exception {
+        return hotelRepository.findHotelByName(name);
+    }
 }

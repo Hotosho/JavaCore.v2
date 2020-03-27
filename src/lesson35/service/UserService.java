@@ -12,7 +12,6 @@ public class UserService {
 
     public User registerUser(User user) throws Exception {
         //check buinesLogic
-        //if logic is ok (if wrong = null)
         return userRepository.registerUser(user);
     }
 }
