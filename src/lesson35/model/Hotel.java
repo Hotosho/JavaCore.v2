@@ -1,8 +1,9 @@
 package lesson35.model;
 
 import java.util.Objects;
+import java.io.Serializable;
 
-public class Hotel {
+public class Hotel implements Serializable {
 
     private Long id;
     private String name;

@@ -10,26 +10,88 @@ import java.util.List;
 
 public class HotelRepository {
 
+
     private UserRepository userRepository = new UserRepository();
+    private String path = ("HotelBD.txt");
 
     public String findHotelByName(String name) throws Exception {
+        List<Hotel> hotels = readHotelBD();
+
+        if (hotels.size() > 0) {
+            for (Hotel hotel : hotels) {
+                if (hotel.getName().equals(name)) {
+                    return hotel.toString();
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private List<Hotel> readHotelBD() throws Exception {
+        userRepository.validate(path);
+
+        List<Hotel> hotels = new ArrayList<>();
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(new File(path));
+            ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
+
+            hotels = (List<Hotel>) inputStream.readObject();
+
+            fileInputStream.close();
+            inputStream.close();
+
+        } catch (EOFException eofe) {
+            System.err.println(eofe);
+            eofe.printStackTrace();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+
+        return hotels;
+    }
+
+
+    public void writeToBD(List<Hotel> hotel) throws Exception {
+        userRepository.validate(path);
+
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
+            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+
+            outputStream.writeObject(hotel);
+
+            fileOutputStream.close();
+            outputStream.close();
+
+        } catch (IOException e) {
+            System.err.println(e);
+            e.printStackTrace();
+        }
+    }
+
+}
+
+    /*public String findHotelByName(String name) throws Exception {
         List<String> listHotel = new ArrayList<>();
-        for (String str : readHotelBD("/Users/mykytakazimirov/Desktop/HOBooking/HotelDb.txt")) {
+        for (String str : readHotelBD(path)) {
             if (str != null)
                 listHotel.add(str);
         }
 
         String hotelName = "";
-        for (String strName : listHotel) {
-            if (strName != null && strName.contains(name))
-                hotelName += strName;
+        for (String str : listHotel) {
+            if (str != null && str.contains(name))
+                hotelName += str;
         }
-
+        System.out.println(hotelName);
         return hotelName;
     }
 
-    private List<String> readHotelBD(String path) throws Exception {
+    public List<String> readHotelBD(String path) throws Exception {
         userRepository.validate(path);
+
         ArrayList<String> hotelList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line = "";
@@ -37,12 +99,12 @@ public class HotelRepository {
                 hotelList.add(line);
             }
         }
+        //System.out.println(hotelList);
         return hotelList;
-
     }
 
 
-    public void writeToBD(Hotel hotel, String path) throws Exception {
+    public void writeToBD(Hotel hotel) throws Exception {
         userRepository.validate(path);
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
@@ -50,6 +112,8 @@ public class HotelRepository {
         } catch (IOException e) {
             System.err.println(hotel + " Can't write to file");
         }
-    }
+    }*/
 
-}
+
+
+

@@ -83,7 +83,7 @@ public class UserRepository {
         File fileBD = new File(filePath);
 
         if (!fileBD.exists()) {
-            throw new FileNotFoundException("File " + fileBD + " does not from");
+            fileBD.createNewFile();
         }
         if (!fileBD.canRead()) {
             throw new Exception("File " + fileBD + " does not have permission to be read");
