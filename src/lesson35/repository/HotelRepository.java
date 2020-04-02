@@ -9,9 +9,9 @@ import java.util.List;
 
 public class HotelRepository {
 
-    private GeneralDAO generalDAO = new GeneralDAO();
     private Validation validate = new Validation();
     private String path = ("HotelBD.txt");
+
 
     public String findHotelByName(String name) throws Exception {
         List<Hotel> hotels = readHotelBD();
@@ -40,7 +40,6 @@ public class HotelRepository {
     }
 
     private List<Hotel> readHotelBD() throws Exception {
-        //userRepository.validate(path);
         validate.validate(path);
 
         List<Hotel> hotels = new ArrayList<>();
@@ -64,8 +63,7 @@ public class HotelRepository {
     }
 
 
-    /*public void writeToBD(List<Hotel> hotel) throws Exception {
-        //userRepository.validate(path);
+    public void writeToBD(List<Hotel> hotel) throws Exception {
         validate.validate(path);
 
         try {
@@ -81,8 +79,7 @@ public class HotelRepository {
             System.err.println(e);
             e.printStackTrace();
         }
-    }*/
-
+    }
 
 
 }

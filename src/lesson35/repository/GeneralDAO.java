@@ -1,22 +1,32 @@
 package lesson35.repository;
 
+import lesson35.model.Hotel;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
-public class GeneralDAO<Q,W,E,R> {
+public abstract class GeneralDAO<T> {
     //private Validation validation = new Validation();
+    private String path;
 
+    public GeneralDAO(String path) {
+        this.path = path;
+    }
 
-    public void writeToBD(List<Q> q, String path) throws Exception{
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void writeToBD(List<T> t) throws Exception {
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
 
-            outputStream.writeObject(q);
+            outputStream.writeObject(t);
 
             fileOutputStream.close();
             outputStream.close();
@@ -26,4 +36,5 @@ public class GeneralDAO<Q,W,E,R> {
             e.printStackTrace();
         }
     }
+
 }
