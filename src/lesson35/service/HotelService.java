@@ -12,4 +12,8 @@ public class HotelService {
     public String findHotelByName(String name) throws Exception {
         return hotelRepository.findHotelByName(name);
     }
+
+    public String findHotelByCity(String city) throws Exception {
+        return hotelRepository.findHotelByCity(city);
+    }
 }

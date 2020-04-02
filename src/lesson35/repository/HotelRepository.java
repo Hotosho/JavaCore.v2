@@ -1,7 +1,6 @@
 package lesson35.repository;
 
 import lesson35.model.Hotel;
-import netscape.javascript.JSObject;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,8 +9,8 @@ import java.util.List;
 
 public class HotelRepository {
 
-
-    private UserRepository userRepository = new UserRepository();
+    private GeneralDAO generalDAO = new GeneralDAO();
+    private Validation validate = new Validation();
     private String path = ("HotelBD.txt");
 
     public String findHotelByName(String name) throws Exception {
@@ -24,12 +23,25 @@ public class HotelRepository {
                 }
             }
         }
+        return null;
+    }
 
+    public String findHotelByCity(String city) throws Exception {
+        List<Hotel> hotels = readHotelBD();
+
+        if (hotels.size() > 0) {
+            for (Hotel hotel : hotels) {
+                if (hotel.getCity().equals(city)) {
+                    return hotel.toString();
+                }
+            }
+        }
         return null;
     }
 
     private List<Hotel> readHotelBD() throws Exception {
-        userRepository.validate(path);
+        //userRepository.validate(path);
+        validate.validate(path);
 
         List<Hotel> hotels = new ArrayList<>();
 
@@ -48,13 +60,13 @@ public class HotelRepository {
         } catch (IOException e) {
             System.err.println(e);
         }
-
         return hotels;
     }
 
 
-    public void writeToBD(List<Hotel> hotel) throws Exception {
-        userRepository.validate(path);
+    /*public void writeToBD(List<Hotel> hotel) throws Exception {
+        //userRepository.validate(path);
+        validate.validate(path);
 
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
@@ -69,7 +81,9 @@ public class HotelRepository {
             System.err.println(e);
             e.printStackTrace();
         }
-    }
+    }*/
+
+
 
 }
 

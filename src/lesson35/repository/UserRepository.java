@@ -6,22 +6,16 @@ import java.io.*;
 import java.util.*;
 
 public class UserRepository {
-    //private User user = new User();
-    //считать данные - считывание файла
-    //обработка данных - маппинг данных
-
+    private Validation validate = new Validation();
 
     public User registerUser(User user) throws Exception {
-        //save user to db (file)
-        // cсгенерировать idUser и передать это все в бд
-        //checkNameUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
-        //checkIdUser(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
         writeToBD(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
         return user;
     }
 
     private void writeToBD(User user, String path) throws Exception {
-        validate(path);
+        //validate(path);
+        validate.validate(path);
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, true))) {
             Random random = new Random();
             user.setId(random.nextLong());
@@ -36,7 +30,8 @@ public class UserRepository {
     }
 
     private List<String> readUserBD(String filePath) throws Exception {
-        validate(filePath);
+        //validate(filePath);
+        validate.validate(filePath);
         List<String> userList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -79,7 +74,7 @@ public class UserRepository {
         return userList;
     }
 
-    protected void validate(String filePath) throws Exception {
+    /*protected void validate(String filePath) throws Exception {
         File fileBD = new File(filePath);
 
         if (!fileBD.exists()) {
@@ -91,7 +86,7 @@ public class UserRepository {
         if (!fileBD.canWrite()) {
             throw new Exception("File " + fileBD + " does not have permission to be write");
         }
-    }
+    }*/
 
 
 }

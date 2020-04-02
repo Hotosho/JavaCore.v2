@@ -17,10 +17,14 @@ public class DemoHotel {
 
         hotels.add(hotel1);
         hotels.add(hotel2);
-        hotelRepository.writeToBD(hotels);
+        //hotelRepository.writeToBD(hotels);
+
 
         String hotelName = hotelRepository.findHotelByName("GrandOtel");
         System.out.println(hotelName);
+
+        String hotelCity = hotelRepository.findHotelByCity("Wroclaw");
+        System.out.println(hotelCity);
         //hotelRepository.writeToBD(hotel1);
         //hotelRepository.writeToBD(hotel2);
         //hotelRepository.readHotelBD("/Users/mykytakazimirov/Desktop/HOBooking/HotelDb.txt");
