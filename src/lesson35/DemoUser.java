@@ -11,13 +11,14 @@ public class DemoUser {
         User user2 = new User(2,"nameTest2", "09876", "PL", UserType.USERS);
         User user3 = new User(30990,"Kurwa", "94781", "PL", UserType.USERS);
         User user4 = new User(34, "Ludovik", "1224", "USA", UserType.USERS);
+        User user5 = new User(4534423, "Wrocyk", "87654", "UA", UserType.USERS);
         //userRepository.registerUser(user1);
         //userRepository.registerUser(user2);
         //userRepository.registerUser(user3);
-        //userRepository.writeToBD("/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt", user2);
+        //userRepository.writeToBD(user2);
         //userRepository.checkNameUser(user3,"/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
         //userRepository.checkIdUser(user3,"/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
-        userRepository.registerUser(user4);
+        userRepository.registerUser(user5);
 
     }
 }

@@ -1,40 +1,48 @@
 package lesson35.repository;
 
-import lesson35.model.Hotel;
+import java.io.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.List;
+public class GeneralDAO {
 
-public abstract class GeneralDAO<T> {
-    //private Validation validation = new Validation();
-    private String path;
+    private Validation validation = new Validation();
+    private FileInputStream fileInputStream;
+    private ObjectInputStream inputStream;
+    private FileOutputStream fileOutputStream;
+    private ObjectOutputStream outputStream;
 
-    public GeneralDAO(String path) {
-        this.path = path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public void writeToBD(List<T> t) throws Exception {
+    public Object readFile(String path) throws Exception {
+        validation.validate(path);
 
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
-            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+            fileInputStream = new FileInputStream(new File(path));
+            inputStream = new ObjectInputStream(fileInputStream);
 
-            outputStream.writeObject(t);
+            return inputStream.readObject();
+        } catch (EOFException eofe) {
+            System.err.println(eofe);
+            eofe.printStackTrace();
+        } catch (IOException e) {
+            System.err.println(e);
+        } finally {
+            fileInputStream.close();
+            inputStream.close();
+        }
+        return null;
+    }
 
-            fileOutputStream.close();
-            outputStream.close();
+    public void writeObject(Object obj, String path) throws Exception {
+        validation.validate(path);
+        try {
+            fileOutputStream = new FileOutputStream(new File(path));
+            outputStream = new ObjectOutputStream(fileOutputStream);
 
+            outputStream.writeObject(obj);
         } catch (IOException e) {
             System.err.println(e);
             e.printStackTrace();
+        } finally {
+            fileOutputStream.close();
+            outputStream.close();
         }
     }
-
 }

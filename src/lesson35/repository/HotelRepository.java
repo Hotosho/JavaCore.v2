@@ -5,16 +5,34 @@ import lesson35.model.Hotel;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class HotelRepository {
 
-    private Validation validate = new Validation();
-    private String path = ("HotelBD.txt");
+    private GeneralDAO generalDAO = new GeneralDAO();
+    private Path path = new Path();
 
 
-    public String findHotelByName(String name) throws Exception {
-        List<Hotel> hotels = readHotelBD();
+    public Object findHotelByCityOrNameHotel(Object obj) throws Exception {
+        List<Hotel> hotels = (List<Hotel>) generalDAO.readFile(path.hotelPath);
+
+        if (hotels.isEmpty()) {
+            throw new Exception("Hotels is Empty");
+        }
+        for (Hotel hotel : hotels) {
+            if (hotel.getName().equals(obj)) {
+                return hotel.toString();
+            } else if (hotel.getCity().equals(obj)) {
+                return hotel.toString();
+            }
+        }
+        return null;
+    }
+
+    /*public String findHotelByName(String name) throws Exception {
+        //List<Hotel> hotels = readHotelBD();
+        List<Hotel> hotels = (List<Hotel>) generalDAO.readFile(path.hotelPath);
 
         if (hotels.size() > 0) {
             for (Hotel hotel : hotels) {
@@ -27,7 +45,8 @@ public class HotelRepository {
     }
 
     public String findHotelByCity(String city) throws Exception {
-        List<Hotel> hotels = readHotelBD();
+        //List<Hotel> hotels = readHotelBD();
+        List<Hotel> hotels = (List<Hotel>) generalDAO.readFile(path.hotelPath);
 
         if (hotels.size() > 0) {
             for (Hotel hotel : hotels) {
@@ -37,9 +56,10 @@ public class HotelRepository {
             }
         }
         return null;
-    }
+    }*/
 
-    private List<Hotel> readHotelBD() throws Exception {
+    //old ver.2***************
+    /*private List<Hotel> readHotelBD() throws Exception {
         validate.validate(path);
 
         List<Hotel> hotels = new ArrayList<>();
@@ -60,9 +80,8 @@ public class HotelRepository {
             System.err.println(e);
         }
         return hotels;
-    }
-
-
+    }*/
+    /*
     public void writeToBD(List<Hotel> hotel) throws Exception {
         validate.validate(path);
 
@@ -72,6 +91,7 @@ public class HotelRepository {
 
             outputStream.writeObject(hotel);
 
+
             fileOutputStream.close();
             outputStream.close();
 
@@ -79,10 +99,12 @@ public class HotelRepository {
             System.err.println(e);
             e.printStackTrace();
         }
-    }
-
+    }*/
 
 }
+
+
+//old ver.1************
 
     /*public String findHotelByName(String name) throws Exception {
         List<String> listHotel = new ArrayList<>();

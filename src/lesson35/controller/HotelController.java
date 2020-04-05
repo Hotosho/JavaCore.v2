@@ -9,11 +9,14 @@ public class HotelController {
 
     private HotelService hotelService = new HotelService();
 
-    public String findHotelByName(String name) throws Exception {
+    /*public String findHotelByName(String name) throws Exception {
         return hotelService.findHotelByName(name);
     }
 
     public String findHotelByCity(String city) throws Exception {
         return hotelService.findHotelByCity(city);
+    }*/
+    public Object findHotelByCityOrNameHotel(Object obj) throws Exception{
+        return hotelService.findHotelByCityOrNameHotel(obj);
     }
 }
