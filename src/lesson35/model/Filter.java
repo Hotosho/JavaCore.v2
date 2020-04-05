@@ -26,11 +26,11 @@ public class Filter {
                 if (name != null && !name.equals(room.getHotel().getName())) return false;
                 if (country != null && !country.equals(room.getHotel().getCountry())) return false;
                 if (city != null && !city.equals(room.getHotel().getCity())) return false;
-                System.out.println(room.toString());
             }
         }
         return true;
     }
+
 
     public Integer getNumberOfGuests() {
         return numberOfGuests;
