@@ -6,10 +6,6 @@ import java.util.Set;
 public class CustomerDAO {
     private static Set<Customer> customers;
 
-    /*public static void CustomerDAO(Set<Customer> customers) {
-        customers = new HashSet<>();
-    }*/
-
     public CustomerDAO() {
         customers = new HashSet<>();
     }
@@ -18,10 +14,10 @@ public class CustomerDAO {
         return customers;
     }
 
-    public Customer addCustomer(Customer customer){
+    public Customer addCustomer(Customer customer) {
         try {
             customers.add(customer);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Customer is not transmitted");
         }
         return customer;

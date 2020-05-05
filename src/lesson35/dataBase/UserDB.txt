@@ -1,0 +1,3 @@
+
+User{id=6989050473139143505, userName='nameTest1', password='12df45', country='PL', userType=USERS}
+User{id=1372272171345283724, userName='nameTest2', password='09876', country='PL', userType=USERS}

@@ -6,26 +6,21 @@ import java.util.Set;
 public class FirmDAO {
     private static Set<Firm> firms;
 
-    /*public FirmDAO(Set<Firm> firms) {
-        this.firms = new HashSet<>();
-    }*/
-
     public FirmDAO() {
         firms = new HashSet<>();
     }
 
 
-    public  Firm addFirm(Firm firm) {
+    public Firm addFirm(Firm firm) {
         try {
             firms.add(firm);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Firm is not transmitted");
         }
         return firm;
     }
 
-    public  Firm removeFirm(Firm firm) {
+    public Firm removeFirm(Firm firm) {
         firms.remove(firm);
         return firm;
     }

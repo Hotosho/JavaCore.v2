@@ -2,10 +2,7 @@ package lesson35.repository;
 
 import lesson35.model.Hotel;
 
-import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class HotelRepository {
@@ -13,9 +10,13 @@ public class HotelRepository {
     private GeneralDAO generalDAO = new GeneralDAO();
     private Path path = new Path();
 
+    public Object writeObject(Object obj, String path) throws Exception {
+        return generalDAO.writeObject(obj, path);
+    }
+
 
     public Object findHotelByCityOrNameHotel(Object obj) throws Exception {
-        List<Hotel> hotels = (List<Hotel>) generalDAO.readFile(path.hotelPath);
+        List<Hotel> hotels = (List<Hotel>) generalDAO.readFile(path.hotelDB);
 
         if (hotels.isEmpty()) {
             throw new Exception("Hotels is Empty");

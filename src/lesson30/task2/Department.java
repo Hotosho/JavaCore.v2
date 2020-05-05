@@ -6,10 +6,7 @@ public class Department {
     private DepartmentType type;
     private Set<Department> employees;
 
-    /*public Department(DepartmentType type, Set<Department> employees) {
-        this.type = type;
-        this.employees = employees;
-    }*/
+
 
     public Department(DepartmentType developers, HashSet<Employee> dev) {
 

@@ -11,7 +11,6 @@ public class UserService {
     private UserRepository userRepository = new UserRepository();
 
     public User registerUser(User user) throws Exception {
-        //check buinesLogic
         return userRepository.registerUser(user);
     }
 }

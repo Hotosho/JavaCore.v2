@@ -30,7 +30,7 @@ public class GeneralDAO {
         return null;
     }
 
-    public void writeObject(Object obj, String path) throws Exception {
+    public Object writeObject(Object obj, String path) throws Exception {
         validation.validate(path);
         try {
             fileOutputStream = new FileOutputStream(new File(path));
@@ -44,5 +44,6 @@ public class GeneralDAO {
             fileOutputStream.close();
             outputStream.close();
         }
+        return null;
     }
 }

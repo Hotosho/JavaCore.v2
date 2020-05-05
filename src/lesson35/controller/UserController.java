@@ -8,7 +8,6 @@ public class UserController {
     //будут методы (функции моего сайта)
     private UserService userService = new UserService();
 
-
     public User registerUser(User user) throws Exception {
         if (user == null)
             throw new Exception("Can't save null user");

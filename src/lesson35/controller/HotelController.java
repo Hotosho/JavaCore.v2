@@ -1,22 +1,15 @@
 package lesson35.controller;
 
-import lesson35.model.Hotel;
+
 import lesson35.service.HotelService;
 
-import java.util.List;
 
 public class HotelController {
 
     private HotelService hotelService = new HotelService();
 
-    /*public String findHotelByName(String name) throws Exception {
-        return hotelService.findHotelByName(name);
+    public Object writeObject(Object obj, String path) throws Exception {
+        return hotelService.writeObject(obj, path);
     }
 
-    public String findHotelByCity(String city) throws Exception {
-        return hotelService.findHotelByCity(city);
-    }*/
-    public Object findHotelByCityOrNameHotel(Object obj) throws Exception{
-        return hotelService.findHotelByCityOrNameHotel(obj);
-    }
 }

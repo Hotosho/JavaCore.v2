@@ -7,9 +7,10 @@ import java.util.*;
 
 public class UserRepository {
     private Validation validate = new Validation();
+    private Path path = new Path();
 
     public User registerUser(User user) throws Exception {
-        writeToBD(user, "/Users/mykytakazimirov/Desktop/HOBooking/UserDb.txt");
+        writeToBD(user, path.userDB);
         return user;
     }
 
@@ -22,8 +23,9 @@ public class UserRepository {
             if (user.getId() < 0) {
                 user.setId(-1 * user.getId());
             }
-            bw.write(user.toString());
             //bw.append("\n");
+            bw.write(user.toString());
+            bw.append("\n");
         } catch (IOException e) {
             System.err.println(user + " Can't write to file");
         }
@@ -73,20 +75,4 @@ public class UserRepository {
         }
         return userList;
     }
-
-    /*protected void validate(String filePath) throws Exception {
-        File fileBD = new File(filePath);
-
-        if (!fileBD.exists()) {
-            fileBD.createNewFile();
-        }
-        if (!fileBD.canRead()) {
-            throw new Exception("File " + fileBD + " does not have permission to be read");
-        }
-        if (!fileBD.canWrite()) {
-            throw new Exception("File " + fileBD + " does not have permission to be write");
-        }
-    }*/
-
-
 }

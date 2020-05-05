@@ -1,11 +1,17 @@
 package lesson35.model;
 
+import lesson35.repository.GeneralDAO;
+import lesson35.repository.Path;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class Filter {
-    Room room = new Room();
     private Integer numberOfGuests;
     private Double price;
     private Boolean breakfastIncluded;
@@ -15,10 +21,42 @@ public class Filter {
     private String country;
     private String city;
 
-    public boolean roomFilter(List<Room> rooms) {
-        if (!rooms.isEmpty()) {
-            for (Room room : rooms) {
-                if (numberOfGuests != 0 && room.getNumberOfGuests() != numberOfGuests) return false;
+    GeneralDAO generalDAO = new GeneralDAO();
+    Path path = new Path();
+
+    public boolean testFilter(Room room) throws Exception {
+        if (room != null){
+            throw new Exception("FUCKKKKK");
+        }
+        if (numberOfGuests != 0 && room.getNumberOfGuests() != numberOfGuests) return false;
+        if (price != 0 && room.getPrice() != price) return false;
+        if (breakfastIncluded != null && room.getBreakfastIncluded() != breakfastIncluded) return false;
+        if (petsAllowed != null && room.getPetsAllowed() != petsAllowed) return false;
+        if (dateAvailableFrom != null && !dateAvailableFrom.equals(room.getDateAvailableFrom())) return false;
+        if (name != null && !name.equals(room.getHotel().getName())) return false;
+        if (country != null && !country.equals(room.getHotel().getCountry())) return false;
+        if (city != null && !city.equals(room.getHotel().getCity())) return false;
+        return true;
+    }
+
+    /*public Object roomFilter(Object obj) throws Exception {
+        List<String> roomList = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(path.roomDB))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                roomList.add(line);
+            }
+
+        }
+        //List<Room> roomList = (List<Room>) generalDAO.readFile(path.roomDB);
+
+        if (roomList.isEmpty())
+            throw new Exception("Rooms is Empty");
+
+        for (Room room : roomList) {
+            if (room != null) {
+                if (numberOfGuests != 0 && !room.getNumberOfGuests().equals(obj)) return false;
+                /*if (numberOfGuests != 0 && room.getNumberOfGuests() != numberOfGuests && !room.getNumberOfGuests().equals(obj)) return false;
                 if (price != 0 && room.getPrice() != price) return false;
                 if (breakfastIncluded != null && room.getBreakfastIncluded() != breakfastIncluded) return false;
                 if (petsAllowed != null && room.getPetsAllowed() != petsAllowed) return false;
@@ -28,8 +66,25 @@ public class Filter {
                 if (city != null && !city.equals(room.getHotel().getCity())) return false;
             }
         }
+        System.out.println("GOOD_TEST");
         return true;
-    }
+    }*/
+
+
+
+    /*public boolean roomFilter(Room rooms) {
+        if (rooms != null) {
+            if (numberOfGuests != 0 && room.getNumberOfGuests() != numberOfGuests) return false;
+            if (price != 0 && room.getPrice() != price) return false;
+            if (breakfastIncluded != null && room.getBreakfastIncluded() != breakfastIncluded) return false;
+            if (petsAllowed != null && room.getPetsAllowed() != petsAllowed) return false;
+            if (dateAvailableFrom != null && !dateAvailableFrom.equals(room.getDateAvailableFrom())) return false;
+            if (name != null && !name.equals(room.getHotel().getName())) return false;
+            if (country != null && !country.equals(room.getHotel().getCountry())) return false;
+            if (city != null && !city.equals(room.getHotel().getCity())) return false;
+        }
+        return true;
+    }*/
 
 
     public Integer getNumberOfGuests() {

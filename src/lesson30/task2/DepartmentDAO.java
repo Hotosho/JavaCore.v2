@@ -6,11 +6,8 @@ import java.util.Set;
 public class DepartmentDAO {
     private static Set<Department> departments;
 
-    /*public static void DepartmentDAO(Set<Department> departments) {
-        departments = new HashSet<>();
-    }*/
 
-    public DepartmentDAO(){
+    public DepartmentDAO() {
         departments = new HashSet<>();
     }
 
@@ -23,7 +20,7 @@ public class DepartmentDAO {
         return department;
     }
 
-    public  Department removeDepartment(Department department) {
+    public Department removeDepartment(Department department) {
         departments.remove(department);
         return department;
     }
